@@ -1,40 +1,28 @@
-# Lane Detection — Hough Transform + OpenCV
+# Rilevamento Corsie Stradali — Trasformata di Hough + OpenCV
 
-Real-time **road lane detection** using OpenCV's Probabilistic Hough Transform (`HoughLinesP`), applied to a highway photo taken with a mobile phone.
+Sistema di **rilevamento delle corsie stradali** in tempo reale usando la Trasformata di Hough Probabilistica (`HoughLinesP`) di OpenCV, applicato a una foto di autostrada.
 
-## What it does
+## Cosa fa
 
-- Loads and auto-rotates a road image (90° counterclockwise correction)
-- Applies **Gaussian blur** to reduce noise before edge detection
-- Detects edges with **Canny** algorithm (thresholds: 50/150)
-- Applies an **ROI mask** (lower half of image — sky/vegetation ignored)
-- Runs **HoughLinesP** to find lane segments
-- Classifies lines as left/right lane by slope sign
-- Averages multiple segments → single representative line per side
-- Draws a **semi-transparent red overlay** on the lane area
-- Draws **yellow lane lines** extended beyond image borders
-- Computes and annotates **asphalt width in pixels**
+- Preprocessing dell'immagine (scala di grigi, sfocatura gaussiana)
+- Rilevamento dei bordi con il filtro di Canny
+- Applicazione di una maschera ROI (Region of Interest)
+- Rilevamento delle linee con `HoughLinesP`
+- Disegno delle corsie rilevate sull'immagine originale
 
-## Results
+## Come si usa
 
-```
-Lines detected left:  7
-Lines detected right: 3
-Left slope:   -1.359  |  intercept: 540.7
-Right slope:   0.873  |  intercept: -118.6
-Asphalt width at y=284: 272.2 px
+```bash
+pip install opencv-python numpy
+python lane_detection.py
 ```
 
-## Tech stack
+## Tecnologie
 
-- Python 3
-- `opencv-python` (`cv2`) — image processing
-- `numpy` — matrix operations
+- `OpenCV` — elaborazione delle immagini e Trasformata di Hough
+- `numpy` — operazioni su array
+- `matplotlib` — visualizzazione risultati
 
-## Usage
+## Tag
 
-Place a road photo named `strada2.jpg` in the working directory, then open `notebook.ipynb` and run all cells. Output saved as `LaneDetection.jpg`.
-
-## Topics
-
-`python` `opencv` `computer-vision` `hough-transform` `lane-detection` `autonomous-driving`
+`python` `opencv` `computer-vision` `lane-detection` `hough-transform` `image-processing`
